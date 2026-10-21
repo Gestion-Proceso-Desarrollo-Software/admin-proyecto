@@ -1,0 +1,350 @@
+{
+  "baseUrl": "http://localhost:8081",
+  "contentType": "application/json",
+  "databaseInfo": {
+    "database": "dbgestor",
+    "existingRecordsAtLastCheck": {
+      "proyectos": 1,
+      "usuario": 3,
+      "tareas": 1,
+      "comentarios": 2,
+      "asignaciones": 0
+    },
+    "knownIds": {
+      "proyecto": 197,
+      "tarea": 199,
+      "comentarios": [201, 202],
+      "usuarios": [131, 172, 196]
+    }
+  },
+  "notes": [
+    "Las consultas por ID usan registros que existen en dbgestor según la salida compartida.",
+    "Para actualizar o eliminar, reemplaza el ID 0 por el ID de un registro creado para pruebas; no modifiques ni elimines los registros existentes.",
+    "La tabla asignaciones está vacía: crea una asignación y consulta su ID con /buscarAsignaciones antes de probar buscar, actualizar o eliminar.",
+    "Los campos ID se omiten al crear porque la API los genera automáticamente.",
+    "Las rutas de listado usan POST y no reciben cuerpo.",
+    "Los endpoints de escritura responden 1 cuando procesan la operación.",
+    "Los valores entre < > son marcadores: sustitúyelos por datos de prueba antes de enviar la petición. No se incluyen contraseñas ni datos personales reales."
+  ],
+  "endpoints": [
+    {
+      "resource": "proyectos",
+      "name": "Crear proyecto",
+      "method": "POST",
+      "url": "http://localhost:8081/addProyecto",
+      "body": {
+        "nombre": "Proyecto de prueba",
+        "descripcion": "Registro para probar la API",
+        "fecha_inicio": "2026-10-01",
+        "fecha_finalizacion": "2026-12-01",
+        "estado_proyecto": "Activo",
+        "fondo": ""
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "proyectos",
+      "name": "Actualizar proyecto",
+      "method": "POST",
+      "url": "http://localhost:8081/updateProyecto",
+      "body": {
+        "id_proyecto": 0,
+        "nombre": "Proyecto actualizado",
+        "descripcion": "Proyecto de prueba actualizado",
+        "fecha_inicio": "2026-10-01",
+        "fecha_finalizacion": "2026-12-01",
+        "estado_proyecto": "Activo",
+        "fondo": ""
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "proyectos",
+      "name": "Consultar proyecto por ID",
+      "method": "GET",
+      "url": "http://localhost:8081/buscarProyecto?id_proyecto=197",
+      "queryParams": {
+        "id_proyecto": 197
+      },
+      "body": null,
+      "expectedResponse": "Objeto proyecto; si no existe, devuelve un objeto con campos null."
+    },
+    {
+      "resource": "proyectos",
+      "name": "Listar proyectos",
+      "method": "POST",
+      "url": "http://localhost:8081/buscarProyectos",
+      "body": null,
+      "expectedResponse": "Arreglo de proyectos."
+    },
+    {
+      "resource": "proyectos",
+      "name": "Eliminar proyecto",
+      "method": "DELETE",
+      "url": "http://localhost:8081/deleteProyecto",
+      "body": {
+        "id_proyecto": 0
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "usuarios",
+      "name": "Crear usuario",
+      "method": "POST",
+      "url": "http://localhost:8081/addUsuario",
+      "body": {
+        "nombre": "Usuario de prueba",
+        "correo_electronico": "prueba@example.test",
+        "contrasena": "ClaveSoloDePrueba123",
+        "rol": "Estudiante",
+        "imagen_usuario": "#336699"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "usuarios",
+      "name": "Actualizar usuario",
+      "method": "POST",
+      "url": "http://localhost:8081/updateUsuario",
+      "body": {
+        "id_usuario": 0,
+        "nombre": "Usuario actualizado",
+        "correo_electronico": "prueba@example.test",
+        "contrasena": "ClaveSoloDePrueba123",
+        "rol": "Estudiante",
+        "imagen_usuario": "#336699"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "usuarios",
+      "name": "Consultar usuario por ID",
+      "method": "GET",
+      "url": "http://localhost:8081/buscarUsuario?id=131",
+      "queryParams": {
+        "id": 131
+      },
+      "body": null,
+      "expectedResponse": "Objeto usuario; si no existe, devuelve un objeto con campos null."
+    },
+    {
+      "resource": "usuarios",
+      "name": "Listar usuarios",
+      "method": "POST",
+      "url": "http://localhost:8081/buscarUsuarios",
+      "body": null,
+      "expectedResponse": "Arreglo de usuarios."
+    },
+    {
+      "resource": "usuarios",
+      "name": "Iniciar sesión",
+      "method": "POST",
+      "url": "http://localhost:8081/getUsuarioLogin",
+      "body": {
+        "correo_electronico": "<CORREO_DE_USUARIO_DE_PRUEBA>",
+        "contrasena": "<CONTRASENA_DE_USUARIO_DE_PRUEBA>"
+      },
+      "expectedResponse": "Objeto usuario; si las credenciales no coinciden, devuelve un objeto con nombre igual a 000."
+    },
+    {
+      "resource": "usuarios",
+      "name": "Eliminar usuario",
+      "method": "DELETE",
+      "url": "http://localhost:8081/deleteUsuario",
+      "body": {
+        "id_usuario": 0
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "tareas",
+      "name": "Crear tarea",
+      "method": "POST",
+      "url": "http://localhost:8081/addTareas",
+      "body": {
+        "nombre": "Tarea de prueba",
+        "descripcion": "Verificar alta y consulta",
+        "fecha_vencimiento": "2026-12-01",
+        "lista": "pendientes",
+        "estado": "primary",
+        "id_proyecto": 197
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "tareas",
+      "name": "Actualizar tarea",
+      "method": "POST",
+      "url": "http://localhost:8081/updateTareas",
+      "body": {
+        "id_tarea": 0,
+        "nombre": "Tarea actualizada",
+        "descripcion": "Tarea de prueba actualizada",
+        "fecha_vencimiento": "2026-12-01",
+        "lista": "pendientes",
+        "estado": "primary",
+        "id_proyecto": 1
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "tareas",
+      "name": "Consultar tarea por ID",
+      "method": "GET",
+      "url": "http://localhost:8081/buscarTarea?id_tarea=199",
+      "queryParams": {
+        "id_tarea": 199
+      },
+      "body": null,
+      "expectedResponse": "Objeto tarea; si no existe, devuelve un objeto con campos null."
+    },
+    {
+      "resource": "tareas",
+      "name": "Listar tareas de un proyecto",
+      "method": "POST",
+      "url": "http://localhost:8081/getTarea",
+      "body": {
+        "id_proyecto": 197
+      },
+      "expectedResponse": "Arreglo de tareas del proyecto."
+    },
+    {
+      "resource": "tareas",
+      "name": "Listar todas las tareas",
+      "method": "POST",
+      "url": "http://localhost:8081/buscarTareas",
+      "body": null,
+      "expectedResponse": "Arreglo de tareas."
+    },
+    {
+      "resource": "tareas",
+      "name": "Eliminar tarea",
+      "method": "DELETE",
+      "url": "http://localhost:8081/deleteTareas",
+      "body": {
+        "id_tarea": 0
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "comentarios",
+      "name": "Crear comentario",
+      "method": "POST",
+      "url": "http://localhost:8081/addComentario",
+      "body": {
+        "id_usuario": "Usuario de prueba",
+        "id_tarea": 199,
+        "texto_comentario": "Comentario de prueba",
+        "fecha_hora": "2026-10-01 12:00"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "comentarios",
+      "name": "Actualizar comentario",
+      "method": "POST",
+      "url": "http://localhost:8081/updateComentario",
+      "body": {
+        "id_comentario": 0,
+        "id_usuario": "Usuario de prueba",
+        "id_tarea": 199,
+        "texto_comentario": "Comentario actualizado",
+        "fecha_hora": "2026-10-01 12:00"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "comentarios",
+      "name": "Consultar comentario por ID",
+      "method": "GET",
+      "url": "http://localhost:8081/buscarComentario?id=201",
+      "queryParams": {
+        "id": 201
+      },
+      "body": null,
+      "expectedResponse": "Objeto comentario; si no existe, devuelve un objeto con campos null."
+    },
+    {
+      "resource": "comentarios",
+      "name": "Listar comentarios de una tarea",
+      "method": "POST",
+      "url": "http://localhost:8081/getComentario",
+      "body": {
+        "id_tarea": 199
+      },
+      "expectedResponse": "Arreglo de comentarios de la tarea."
+    },
+    {
+      "resource": "comentarios",
+      "name": "Listar todos los comentarios",
+      "method": "POST",
+      "url": "http://localhost:8081/buscarComentarios",
+      "body": null,
+      "expectedResponse": "Arreglo de comentarios."
+    },
+    {
+      "resource": "comentarios",
+      "name": "Eliminar comentario",
+      "method": "DELETE",
+      "url": "http://localhost:8081/deleteComentario",
+      "body": {
+        "id_comentario": 0
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "asignaciones",
+      "name": "Crear asignación",
+      "method": "POST",
+      "url": "http://localhost:8081/addAsignacion",
+      "body": {
+        "id_usuario": 131,
+        "id_tarea": 199,
+        "fecha_asignacion": "2026-10-01"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "asignaciones",
+      "name": "Actualizar asignación",
+      "method": "POST",
+      "url": "http://localhost:8081/updateAsignacion",
+      "body": {
+        "id_asignacion": 0,
+        "id_usuario": 131,
+        "id_tarea": 199,
+        "fecha_asignacion": "2026-10-01"
+      },
+      "expectedResponse": 1
+    },
+    {
+      "resource": "asignaciones",
+      "name": "Consultar asignación por ID",
+      "method": "GET",
+      "url": "http://localhost:8081/buscarAsignacion?id=0",
+      "queryParams": {
+        "id": 0
+      },
+      "body": null,
+      "expectedResponse": "Objeto asignación; si no existe, devuelve un objeto con campos null."
+    },
+    {
+      "resource": "asignaciones",
+      "name": "Listar asignaciones",
+      "method": "POST",
+      "url": "http://localhost:8081/buscarAsignaciones",
+      "body": null,
+      "expectedResponse": "Arreglo de asignaciones."
+    },
+    {
+      "resource": "asignaciones",
+      "name": "Eliminar asignación",
+      "method": "DELETE",
+      "url": "http://localhost:8081/deleteAsignacion",
+      "body": {
+        "id_asignacion": 0
+      },
+      "expectedResponse": 1
+    }
+  ]
+}
