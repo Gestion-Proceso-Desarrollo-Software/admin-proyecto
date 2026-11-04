@@ -1,0 +1,10 @@
+com\mx\cbtis\gestor\modelo\ModeloTest.class
+com\mx\cbtis\gestor\testutil\PojoTester.class
+com\mx\cbtis\gestor\controller\UsuarioControllerTest.class
+com\mx\cbtis\gestor\controller\TareasControllerTest.class
+com\mx\cbtis\gestor\repository\ConsultasRepositoryTest.class
+com\mx\cbtis\gestor\controller\BaseApiTest.class
+com\mx\cbtis\gestor\controller\ProyectosControllerTest.class
+com\mx\cbtis\gestor\Ejercicio5MyApiGestorApplicationTests.class
+com\mx\cbtis\gestor\controller\ComentariosControllerTest.class
+com\mx\cbtis\gestor\controller\AsignacionesControllerTest.class

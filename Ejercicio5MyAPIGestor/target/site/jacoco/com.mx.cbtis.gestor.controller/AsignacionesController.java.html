@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AsignacionesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ejercicio5MyAPIGestor</a> &gt; <a href="index.source.html" class="el_package">com.mx.cbtis.gestor.controller</a> &gt; <span class="el_source">AsignacionesController.java</span></div><h1>AsignacionesController.java</h1><pre class="source lang-java linenums">package com.mx.cbtis.gestor.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.cbtis.gestor.modelo.Asignaciones;
+import com.mx.cbtis.gestor.modelo.Tareas;
+import com.mx.cbtis.gestor.repository.AsignacionesRepository;
+
+@RestController
+<span class="fc" id="L20">public class AsignacionesController {</span>
+	
+	@Autowired
+	AsignacionesRepository asignacionestable;
+	
+	@GetMapping(&quot;/buscarAsignacion&quot;)
+	public Asignaciones getAsignacion(@RequestParam int id) {
+		
+<span class="fc" id="L28">		Asignaciones buscar = new Asignaciones();</span>
+<span class="fc" id="L29">		Optional&lt;Asignaciones&gt; asignacion = asignacionestable.findById(id);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if(asignacion.isPresent()) {</span>
+<span class="fc" id="L31">			buscar = asignacion.get();</span>
+		}
+		
+<span class="fc" id="L34">		return buscar;</span>
+	}
+	
+	@PostMapping(&quot;/addAsignacion&quot;)
+	public int addAsignacion(@RequestBody Asignaciones asignacion) {
+		
+<span class="fc" id="L40">		int flag = 0;</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+			
+<span class="fc" id="L43">			asignacionestable.save(asignacion);</span>
+<span class="fc" id="L44">			flag = 1;</span>
+		}
+		
+<span class="fc" id="L47">		return flag;</span>
+	}
+	
+	@PostMapping(&quot;/updateAsignacion&quot;)
+	public int updateAsignacion(@RequestBody Asignaciones asignacion) {
+		
+<span class="fc" id="L53">		int flag = 0;</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+<span class="fc" id="L55">			asignacionestable.save(asignacion);</span>
+<span class="fc" id="L56">			flag = 1;</span>
+		}
+		
+<span class="fc" id="L59">		return flag;</span>
+	}
+	
+	@DeleteMapping(&quot;/deleteAsignacion&quot;)
+	public int deleteAsignacion(@RequestBody Asignaciones asignacion) {
+		
+<span class="fc" id="L65">		int flag = 0;</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+<span class="fc" id="L67">			asignacionestable.delete(asignacion);</span>
+<span class="fc" id="L68">			flag = 1;</span>
+		}
+		
+<span class="fc" id="L71">		return flag;</span>
+	}   
+	
+	@PostMapping(&quot;/buscarAsignaciones&quot;)
+	public List&lt;Asignaciones&gt; getAsignaciones(){
+		
+<span class="fc" id="L77">		List&lt;Asignaciones&gt; listaAsignaciones = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L78">		asignacionestable.findAll().forEach(listaAsignaciones :: add);</span>
+<span class="fc" id="L79">		return listaAsignaciones;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

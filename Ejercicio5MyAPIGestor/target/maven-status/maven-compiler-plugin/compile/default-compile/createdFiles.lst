@@ -1,0 +1,16 @@
+com\mx\cbtis\gestor\repository\AsignacionesRepository.class
+com\mx\cbtis\gestor\modelo\Usuario.class
+com\mx\cbtis\gestor\controller\TareasController.class
+com\mx\cbtis\gestor\repository\TareasRepository.class
+com\mx\cbtis\gestor\controller\ProyectosController.class
+com\mx\cbtis\gestor\modelo\Proyectos.class
+com\mx\cbtis\gestor\modelo\Tareas.class
+com\mx\cbtis\gestor\Ejercicio5MyApiGestorApplication.class
+com\mx\cbtis\gestor\repository\ProtectosRepository.class
+com\mx\cbtis\gestor\repository\UsuarioRepository.class
+com\mx\cbtis\gestor\modelo\Asignaciones.class
+com\mx\cbtis\gestor\modelo\Comentarios.class
+com\mx\cbtis\gestor\controller\ComentariosController.class
+com\mx\cbtis\gestor\controller\UsuarioController.class
+com\mx\cbtis\gestor\controller\AsignacionesController.class
+com\mx\cbtis\gestor\repository\ComentariosRepository.class

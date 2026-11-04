@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mx.cbtis.gestor.controller.AsignacionesControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.74 s -- in com.mx.cbtis.gestor.controller.AsignacionesControllerTest
