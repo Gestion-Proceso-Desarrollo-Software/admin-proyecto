@@ -20,8 +20,13 @@ public final class PojoTester {
     private PojoTester() {
     }
 
-    public static void probar(Class<?> tipo) throws Exception {
-        Object objeto = tipo.getDeclaredConstructor().newInstance();
+    /**
+     * Ejecuta las comprobaciones sobre la clase indicada y devuelve la instancia
+     * poblada con los valores de prueba para que el metodo @Test pueda realizar
+     * aserciones adicionales directas sobre el objeto resultante.
+     */
+    public static <T> T probar(Class<T> tipo) throws Exception {
+        T objeto = tipo.getDeclaredConstructor().newInstance();
         assertNotNull(objeto);
 
         for (PropertyDescriptor pd : Introspector.getBeanInfo(tipo, Object.class).getPropertyDescriptors()) {
@@ -39,7 +44,8 @@ public final class PojoTester {
         for (Constructor<?> c : tipo.getDeclaredConstructors()) {
             if (c.getParameterCount() > 0) {
                 Object[] args = Arrays.stream(c.getParameterTypes()).map(PojoTester::muestra).toArray();
-                assertNotNull(c.newInstance(args), "Constructor con parametros de " + tipo.getSimpleName());
+                Object construido = c.newInstance(args);
+                assertNotNull(construido, "Constructor con parametros de " + tipo.getSimpleName());
             }
         }
 
@@ -49,6 +55,8 @@ public final class PojoTester {
                 m.invoke(objeto);
             }
         }
+
+        return objeto;
     }
 
     private static Object muestra(Class<?> t) {
