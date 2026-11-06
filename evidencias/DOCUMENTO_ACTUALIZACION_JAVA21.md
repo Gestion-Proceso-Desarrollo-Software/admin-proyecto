@@ -78,8 +78,8 @@ En el panel de administración de Jenkins (**Administrar Jenkins > Tools / Herra
 
 2. **Maven (`Maven21`)**:
    * **Nombre:** `Maven21`
-   * **Versión instalada:** `3.10.0` (o `3.9.x`)
-   * **Requisito técnico:** Java 21 requiere Maven >= 3.8.8 para compilar correctamente sin advertencias de ASM/bytecode; la versión 3.10.0 / 3.9.x supera este estándar y garantiza compatibilidad plena con el `maven-compiler-plugin`.
+   * **Versión instalada:** `3.10.0`
+   * **Requisito técnico:** Java 21 requiere Maven >= 3.8.8 para compilar correctamente sin advertencias de ASM/bytecode; la versión 3.10.0 supera este estándar y garantiza compatibilidad plena con el `maven-compiler-plugin`.
 
 ---
 

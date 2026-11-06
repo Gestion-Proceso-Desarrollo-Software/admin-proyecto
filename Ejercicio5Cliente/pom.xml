@@ -73,7 +73,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.13</version>
+                <version>0.8.12</version>
                 <configuration>
                     <excludes>
                         <!-- Clase con main() y el @Bean RestTemplate: arranque/configuracion, sin logica de negocio -->
@@ -115,7 +115,7 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.8.13</version>
+                        <version>0.8.12</version>
                         <executions>
                             <execution>
                                 <id>check-metodos</id>

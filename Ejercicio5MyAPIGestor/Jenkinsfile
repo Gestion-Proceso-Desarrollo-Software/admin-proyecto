@@ -1,0 +1,140 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'JDK21'
+        maven 'Maven21'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Gestion-Proceso-Desarrollo-Software/admin-proyecto.git'
+            }
+        }
+        stage('Pruebas y Cobertura') {
+            steps {
+                sh '''
+                    set -e
+
+                    echo "===== PRUEBAS BACKEND ====="
+                    cd Ejercicio5MyAPIGestor
+                    mvn clean verify
+
+                    echo "===== PRUEBAS FRONTEND ====="
+                    cd ../Ejercicio5Cliente
+                    mvn clean verify
+
+                    echo "===== PRUEBAS FINALIZADAS ====="
+                '''
+            }
+        }
+        stage('SonarQube Backend') {
+            steps {
+                dir('Ejercicio5MyAPIGestor') {
+                    withSonarQubeEnv('SonarQube') {
+                        sh '''
+                            mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
+                                -Dsonar.projectKey=admin-proyectos-backend \
+                                -Dsonar.projectName="Admin Proyectos Backend" \
+                                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Quality Gate Backend') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    script {
+                        def qualityGateBackend = waitForQualityGate(
+                            abortPipeline: true
+                        )
+
+                        echo "Quality Gate Backend: ${qualityGateBackend.status}"
+                    }
+                }
+            }
+        }
+        stage('SonarQube Frontend') {
+            steps {
+                dir('Ejercicio5Cliente') {
+                    withSonarQubeEnv('SonarQube') {
+                        sh '''
+                            mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
+                                -Dsonar.projectKey=admin-proyectos-frontend \
+                                -Dsonar.projectName="Admin Proyectos Frontend" \
+                                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Quality Gate Frontend') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    script {
+                        def qualityGateFrontend = waitForQualityGate(
+                            abortPipeline: true
+                        )
+
+                        echo "Quality Gate Frontend: ${qualityGateFrontend.status}"
+                    }
+                }
+            }
+        }
+        stage('Escaneo de Seguridad Trivy') {
+    steps {
+        sh '''
+            set -eu
+            echo "===== PREPARANDO TRIVY ====="
+            mkdir -p reportes
+            # Obtener el volumen real de Jenkins
+            JENKINS_VOLUME=$(docker inspect jenkins \
+                --format '{{range .Mounts}}{{if eq .Destination "/var/jenkins_home"}}{{.Name}}{{end}}{{end}}')
+            if [ -z "$JENKINS_VOLUME" ]; then
+                echo "ERROR: No se encontro el volumen de Jenkins."
+                exit 1
+            fi
+            echo "Volumen Jenkins: $JENKINS_VOLUME"
+            echo "===== VERIFICANDO WORKSPACE ====="
+            docker run --rm \
+                --mount "type=volume,source=$JENKINS_VOLUME,target=/src,volume-subpath=workspace/calidad" \
+                alpine:latest \
+                sh -c 'test -d /src/Ejercicio5MyAPIGestor && test -d /src/Ejercicio5Cliente && test -d /src/reportes'
+            echo "===== EJECUTANDO TRIVY ====="
+            docker run --rm \
+                --mount "type=volume,source=$JENKINS_VOLUME,target=/src,volume-subpath=workspace/calidad" \
+                aquasec/trivy:latest \
+                fs \
+                --scanners vuln,secret,misconfig \
+                --skip-check-update \
+                --offline-scan \
+                --exit-code 0 \
+                --format json \
+                --output /src/reportes/trivy.json \
+                /src
+            echo "===== ESCANEO TRIVY FINALIZADO ====="
+            test -s reportes/trivy.json
+            echo "Reporte generado correctamente."
+            ls -lh reportes/trivy.json
+        '''
+    }
+}
+}
+    post {
+        success {
+            echo 'PIPELINE DE CALIDAD COMPLETADO CORRECTAMENTE.'
+            echo 'Pruebas, SonarQube, Quality Gates y Trivy finalizaron.'
+        }
+        failure {
+            echo 'ERROR: EL PIPELINE DE CALIDAD HA FALLADO.'
+            echo 'Revisa la consola de Jenkins para identificar el problema.'
+        }
+        always {
+            archiveArtifacts artifacts: 'reportes/trivy.json',
+                             allowEmptyArchive: true,
+                             fingerprint: true
+            echo 'EJECUCION DEL PIPELINE FINALIZADA.'
+        }
+    }
+}
