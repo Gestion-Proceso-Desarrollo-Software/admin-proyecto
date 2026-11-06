@@ -1,0 +1,24 @@
+@'
+# Archivos y carpetas generados por Maven
+**/target/
+
+# Archivos de compilacion
+*.class
+
+# Archivos de configuracion local
+.env
+.env.*
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Configuracion de IDE
+.idea/
+.vscode/
+*.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+'@ | Set-Content -Path .gitignore -Encoding utf8
