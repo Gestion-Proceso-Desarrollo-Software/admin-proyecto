@@ -55,7 +55,7 @@ import com.mx.cbtis.gestor.repository.UsuarioRepository;
 	@PostMapping(&quot;/addUsuario&quot;)
 	public int addUsuario(@RequestBody Usuario usuario) {
 <span class="fc" id="L57">		int flag = 0;</span>
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">		if(!usuario.equals(null)) {</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		if(usuario != null) {</span>
 <span class="fc" id="L59">			usuariotable.save(usuario);</span>
 <span class="fc" id="L60">			flag = 1;</span>
 		}
@@ -66,7 +66,7 @@ import com.mx.cbtis.gestor.repository.UsuarioRepository;
 	@PostMapping(&quot;/updateUsuario&quot;)
 	public int updateUsuario(@RequestBody Usuario usuario) {
 <span class="fc" id="L68">		int flag = 0;</span>
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if(!usuario.equals(null)) {</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if(usuario != null) {</span>
 <span class="fc" id="L70">			usuariotable.save(usuario);</span>
 <span class="fc" id="L71">			flag = 1;</span>
 		}
@@ -77,7 +77,7 @@ import com.mx.cbtis.gestor.repository.UsuarioRepository;
 	@DeleteMapping(&quot;/deleteUsuario&quot;)
 	public int deleteUsuario(@RequestBody Usuario usuario) {
 <span class="fc" id="L79">		int flag = 0;</span>
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">		if(!usuario.equals(null)) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		if(usuario != null) {</span>
 <span class="fc" id="L81">			usuariotable.delete(usuario);</span>
 <span class="fc" id="L82">			flag = 1;</span>
 		}

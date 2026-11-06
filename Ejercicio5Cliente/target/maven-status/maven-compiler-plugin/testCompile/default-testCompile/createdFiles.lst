@@ -1,0 +1,4 @@
+com\mx\cbtis\Ejercicio5ClienteApplicationTests.class
+com\mx\cbtis\testutil\PojoTester.class
+com\mx\cbtis\modelo\ModeloTest.class
+com\mx\cbtis\controller\GestorControllerTest.class

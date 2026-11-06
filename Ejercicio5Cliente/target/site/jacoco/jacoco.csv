@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Ejercicio5Cliente,com.mx.cbtis.controller,GestorController,0,515,0,0,0,118,0,26,0,26
+Ejercicio5Cliente,com.mx.cbtis.modelo,Asignaciones,0,46,0,0,0,20,0,10,0,10
+Ejercicio5Cliente,com.mx.cbtis.modelo,Tareas,0,76,0,0,0,32,0,16,0,16
+Ejercicio5Cliente,com.mx.cbtis.modelo,Comentarios,0,56,0,0,0,24,0,12,0,12
+Ejercicio5Cliente,com.mx.cbtis.modelo,Proyectos,0,76,0,0,0,32,0,16,0,16
+Ejercicio5Cliente,com.mx.cbtis.modelo,Usuario,0,66,0,0,0,28,0,14,0,14

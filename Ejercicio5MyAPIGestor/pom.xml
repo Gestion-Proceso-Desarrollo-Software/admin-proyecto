@@ -62,7 +62,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <!-- 1) SUREFIRE: ejecuta las pruebas JUnit y genera target/surefire-reports -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -72,7 +71,6 @@
                     <argLine>@{argLine}</argLine>
                 </configuration>
             </plugin>
-
             <!-- 2) JACOCO: mide la cobertura y genera target/site/jacoco/index.html y jacoco.xml -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -100,7 +98,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!-- 3) SONARSCANNER: plugin obligatorio de la rubrica (mvn sonar:sonar) -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>

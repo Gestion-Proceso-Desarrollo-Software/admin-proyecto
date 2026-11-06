@@ -38,7 +38,7 @@ import com.mx.cbtis.gestor.repository.AsignacionesRepository;
 	public int addAsignacion(@RequestBody Asignaciones asignacion) {
 		
 <span class="fc" id="L40">		int flag = 0;</span>
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		if(asignacion != null) {</span>
 			
 <span class="fc" id="L43">			asignacionestable.save(asignacion);</span>
 <span class="fc" id="L44">			flag = 1;</span>
@@ -51,7 +51,7 @@ import com.mx.cbtis.gestor.repository.AsignacionesRepository;
 	public int updateAsignacion(@RequestBody Asignaciones asignacion) {
 		
 <span class="fc" id="L53">		int flag = 0;</span>
-<span class="pc bpc" id="L54" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		if(asignacion != null) {</span>
 <span class="fc" id="L55">			asignacionestable.save(asignacion);</span>
 <span class="fc" id="L56">			flag = 1;</span>
 		}
@@ -63,7 +63,7 @@ import com.mx.cbtis.gestor.repository.AsignacionesRepository;
 	public int deleteAsignacion(@RequestBody Asignaciones asignacion) {
 		
 <span class="fc" id="L65">		int flag = 0;</span>
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		if(!asignacion.equals(null)) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if(asignacion != null) {</span>
 <span class="fc" id="L67">			asignacionestable.delete(asignacion);</span>
 <span class="fc" id="L68">			flag = 1;</span>
 		}

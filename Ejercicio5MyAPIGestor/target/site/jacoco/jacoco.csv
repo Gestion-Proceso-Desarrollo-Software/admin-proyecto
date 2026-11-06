@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,UsuarioController,0,106,3,7,0,32,3,9,0,7
-Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,ProyectosController,0,81,3,5,0,24,3,7,0,6
-Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,AsignacionesController,0,81,3,5,0,24,3,7,0,6
-Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,ComentariosController,0,89,3,5,0,26,3,8,0,7
-Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,TareasController,0,89,3,5,0,26,3,8,0,7
+Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,UsuarioController,0,100,0,10,0,32,0,12,0,7
+Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,ProyectosController,0,75,0,8,0,24,0,10,0,6
+Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,AsignacionesController,0,75,0,8,0,24,0,10,0,6
+Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,ComentariosController,0,83,0,8,0,26,0,11,0,7
+Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.controller,TareasController,0,83,0,8,0,26,0,11,0,7
 Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.modelo,Tareas,0,76,0,0,0,32,0,16,0,16
 Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.modelo,Asignaciones,0,46,0,0,0,20,0,10,0,10
 Ejercicio5MyAPIGestor,com.mx.cbtis.gestor.modelo,Proyectos,0,76,0,0,0,32,0,16,0,16
